@@ -1,0 +1,9 @@
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Milk",
+  "barcode": "1111",
+  "price": 40,
+  "quantity": 10
+}
