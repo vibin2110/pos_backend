@@ -7,16 +7,17 @@ public class InvoiceItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String productName;
-    private Double price;
-    private Integer quantity;
-    private Double totalPrice;
 
-    // ===== GETTERS & SETTERS =====
+    private double price;
 
-    public Integer getId() {
+    private int quantity;
+
+    private double totalPrice;
+
+    public Long getId() {
         return id;
     }
 
@@ -24,31 +25,35 @@ public class InvoiceItem {
         return productName;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

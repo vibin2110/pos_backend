@@ -9,19 +9,22 @@ public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private LocalDateTime createdAt;
 
-    private Double totalAmount;
+    private double totalAmount;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "invoice_id")
     private List<InvoiceItem> items;
 
-    // ===== GETTERS & SETTERS =====
+    // Automatically set time when invoice is saved
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -29,20 +32,24 @@ public class Invoice {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Double getTotalAmount() {
+    public double getTotalAmount() {
         return totalAmount;
-    }
-
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
     }
 
     public List<InvoiceItem> getItems() {
         return items;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public void setItems(List<InvoiceItem> items) {

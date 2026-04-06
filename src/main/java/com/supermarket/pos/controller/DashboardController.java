@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/dashboard")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class DashboardController {
 
     @Autowired
     private DashboardService dashboardService;
 
+
     @GetMapping("/stats")
-    public DashboardStats getStats() {
+    public DashboardStats getDashboardStats() {
         return dashboardService.getDashboardStats();
     }
 }

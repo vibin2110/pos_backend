@@ -10,11 +10,22 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public Product getProduct() { return product; }
-    public int getQuantity() { return quantity; }
+    public Product getProduct() {
+        return product;
+    }
 
-    public void increaseQuantity() {
-        this.quantity++;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    // NEW: setter for quantity
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    // Increase by 1 (used for barcode scan)
+    public void increaseQuantity(int qty) {
+        this.quantity += qty;
     }
 
     public double getTotalPrice() {

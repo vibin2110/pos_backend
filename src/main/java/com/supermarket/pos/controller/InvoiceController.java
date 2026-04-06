@@ -7,6 +7,7 @@ import com.supermarket.pos.entity.Invoice;
 import com.supermarket.pos.repository.InvoiceRepository;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/invoices")
 public class InvoiceController {
 

@@ -10,10 +10,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true)
     private String username;
+
     private String password;
     private String role;
-    private int role_id;
+    private String email;
+    private String otp;
+    private Long otpExpiry;
+
+    private int roleId;
 
     public User() {}
 
@@ -48,10 +54,38 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    public int getRole_id() {
-        return role_id;
+
+    public int getRoleId() {
+        return roleId;
     }
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    // ===== ADDED BELOW =====
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public Long getOtpExpiry() {
+        return otpExpiry;
+    }
+
+    public void setOtpExpiry(Long otpExpiry) {
+        this.otpExpiry = otpExpiry;
     }
 }

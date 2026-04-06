@@ -1,14 +1,13 @@
 package com.supermarket.pos.service;
 
-import com.supermarket.pos.entity.Invoice;
 import com.supermarket.pos.entity.SalesReport;
+import com.supermarket.pos.entity.DailySalesReport;
 import com.supermarket.pos.repository.InvoiceRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,25 +16,55 @@ public class ReportService {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
-    public SalesReport getDailySalesReport() {
 
-        LocalDate today = LocalDate.now();
+    // Existing method (kept exactly as before)
+    public List<SalesReport> getProductSalesReport() {
 
-        LocalDateTime start = today.atStartOfDay();
-        LocalDateTime end = start.plusDays(1);
+        List<Object[]> results = invoiceRepository.getDailySales();
 
-        List<Invoice> invoices =
-                invoiceRepository.findByCreatedAtBetween(start, end);
+        List<SalesReport> reports = new ArrayList<>();
 
-        double revenue = invoices.stream()
-                .mapToDouble(Invoice::getTotalAmount)
-                .sum();
+        for (Object[] row : results) {
 
-        SalesReport report = new SalesReport();
-        report.setDate(today);
-        report.setTotalInvoices(invoices.size());
-        report.setTotalRevenue(revenue);
+            SalesReport report = new SalesReport();
 
-        return report;
+            if (row[0] != null) {
+                report.setDate(row[0].toString());
+            }
+
+            if (row[1] != null) {
+                report.setTotalSales(((Number) row[1]).doubleValue());
+            }
+
+            reports.add(report);
+        }
+
+        return reports;
+    }
+
+
+    // ⭐ NEW method for daily sales analytics
+    public List<DailySalesReport> getDailySalesReport() {
+
+        List<Object[]> results = invoiceRepository.getDailySales();
+
+        List<DailySalesReport> reports = new ArrayList<>();
+
+        for (Object[] row : results) {
+
+            DailySalesReport report = new DailySalesReport();
+
+            if (row[0] != null) {
+                report.setDate(row[0].toString());
+            }
+
+            if (row[1] != null) {
+                report.setTotalSales(((Number) row[1]).doubleValue());
+            }
+
+            reports.add(report);
+        }
+
+        return reports;
     }
 }

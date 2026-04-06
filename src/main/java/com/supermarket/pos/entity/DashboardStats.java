@@ -2,10 +2,35 @@ package com.supermarket.pos.entity;
 
 public class DashboardStats {
 
+    private double todaySales;
+    private int billsToday;
     private long totalProducts;
-    private long lowStockProducts;
-    private long totalInvoices;
-    private double todayRevenue;
+    private int lowStock;
+
+    public DashboardStats() {}
+
+    public DashboardStats(double todaySales, int billsToday, long totalProducts, int lowStock) {
+        this.todaySales = todaySales;
+        this.billsToday = billsToday;
+        this.totalProducts = totalProducts;
+        this.lowStock = lowStock;
+    }
+
+    public double getTodaySales() {
+        return todaySales;
+    }
+
+    public void setTodaySales(double todaySales) {
+        this.todaySales = todaySales;
+    }
+
+    public int getBillsToday() {
+        return billsToday;
+    }
+
+    public void setBillsToday(int billsToday) {
+        this.billsToday = billsToday;
+    }
 
     public long getTotalProducts() {
         return totalProducts;
@@ -15,27 +40,11 @@ public class DashboardStats {
         this.totalProducts = totalProducts;
     }
 
-    public long getLowStockProducts() {
-        return lowStockProducts;
+    public int getLowStock() {
+        return lowStock;
     }
 
-    public void setLowStockProducts(long lowStockProducts) {
-        this.lowStockProducts = lowStockProducts;
-    }
-
-    public long getTotalInvoices() {
-        return totalInvoices;
-    }
-
-    public void setTotalInvoices(long totalInvoices) {
-        this.totalInvoices = totalInvoices;
-    }
-
-    public double getTodayRevenue() {
-        return todayRevenue;
-    }
-
-    public void setTodayRevenue(double todayRevenue) {
-        this.todayRevenue = todayRevenue;
+    public void setLowStock(int lowStock) {
+        this.lowStock = lowStock;
     }
 }
