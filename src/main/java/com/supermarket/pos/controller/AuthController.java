@@ -78,4 +78,16 @@ public class AuthController {
         String response = authService.resetPassword(email, otp, newPassword);
         return ResponseEntity.ok(response);
     }
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody User user) {
+
+        // Optional: check if user already exists
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            return ResponseEntity.badRequest().body("Username already exists");
+        }
+
+        User savedUser = userRepository.save(user);
+
+        return ResponseEntity.ok(savedUser);
+    }
 }
